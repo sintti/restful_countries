@@ -18,11 +18,11 @@ const Countries = ({ countries }) => {
       c.subregion.toLowerCase().includes(regionFilter))
   
   const nameFilterListener = (event) => {
-    setNameFilter(event.target.value)
+    setNameFilter(event.target.value.toLowerCase())
   }
   
   const regionFilterListener = (event) => {
-    setRegionFilter(event.target.value)
+    setRegionFilter(event.target.value.toLowerCase())
   }
   
   const showCountry = (c) => {
