@@ -29,7 +29,7 @@ const FilterForm = ({ nameFilter, regionFilter, nameFilterListener, regionFilter
       </div>
       <div className={classes.text}>
         Filter countries by their name or subregion ie. "eastern europe".
-        Click flags for more information about the country.
+        Click "Learn more" for more information about the country.
       </div>
     </form>
   )
