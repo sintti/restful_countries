@@ -1,24 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import Container from '@material-ui/core/Container'
 
-function App() {
+import countryServices from './services/countries'
+import Countries from './components/Countries'
+import Country from './components/Country'
+import Footer from './components/Footer'
+
+const App = () => {
+  const [countries, setCountries] = useState([])
+  
+  useEffect(() => {
+    countryServices
+      .getAll()
+      .then(response =>{
+        setCountries(response)
+      })
+      .catch(e => console.log('error happened: ', e.message))
+  }, [])
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container>
+      <Router>
+        <h1>RESTful countries by Erkka</h1>
+          <Switch>
+            <Route path='/country/:id'>
+              <Country />
+            </Route>
+            <Route path='/'>
+              <Countries countries={countries} />
+            </Route> 
+          </Switch>
+        <Footer />
+      </Router>
+    </Container>
   );
 }
 
